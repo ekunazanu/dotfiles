@@ -1,0 +1,423 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode"],
+    // "modules-center": ["sway/window", "wlr/taskbar"],
+    "modules-center": ["custom/playerctl"],
+    "modules-right": ["tray", "custom/audiorecording", "custom/screenrecording", "memory", "cpu", "disk", "temperature", "idle_inhibitor", "backlight", "network", "battery", "pulseaudio", "clock", "custom/applauncher", "custom/power"],
+
+    "sway/workspaces": {
+         "disable-scroll": false,
+         "disable-scroll-wraparound": true,
+         "enable-bar-scroll": false,
+         "smooth-scrolling-threshold": 1,
+         "all-outputs": true,
+         "persistent_workspaces": {
+             "1": [],
+             "2": [],
+             "3": [],
+             "4": [],
+             "5": [],
+             "6": [],
+             "7": [],
+             "8": [],
+             "9": [],
+             "10": []
+         },
+         "format": "{icon}",
+         "format-icons": {
+             "1": "1", // ,
+             "2": "2", //     
+             "3": "3", //    
+             "4": "4", //     
+             "5": "5", //  
+             "6": "6", // 
+             "7": "7", //     
+             "8": "8", // 
+             "9": "9", // 
+             "10": "10", // 
+             "urgent": "",
+             "default": "",
+             // "focused": ""
+         }
+    },
+
+    "wlr/taskbar": {
+        "format": "{app_id}",
+        // "icon-size": 16,
+        // "icon-theme": "Numix-Circle",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "max-length": 50,
+        "active-first": false,
+        "all_workspaces": false,
+        "tooltip": false
+    },
+
+    "sway/scratchpad": {
+        "format": "F",
+        // "format-icons": "",
+        "show-empty": false,
+        "on-click": "swaymsg scratchpad show",
+        "tooltip": false
+    },
+
+    "sway/mode": {
+        "format": "{}",
+        "tooltip": false
+    },
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50,
+        "tooltip": false
+    },
+
+    "keyboard-state": {
+        "format": "{icon} {name}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        },
+        "numlock": true,
+        "capslock": true,
+        "scrolllock": true,
+        "tooltip": false
+    },
+
+    "mpd": {
+        // "format": "🎜 {stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title}",
+        "format": "🎜 {stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title}",
+        "format-disconnected": " MPD Disconnected",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}  Stopped",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {"on": " "},
+        "random-icons": {"on": " "},
+        "repeat-icons": {"on": " "},
+        "single-icons": {"on": " 1 "},
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip": false
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": false
+    },
+
+    "tray": {"spacing": 8},
+
+    "clock": {
+        // "timezone": "",
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M %a}",
+        "format-alt": "{:%d %b %Y}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "", // 
+        "format-alt": "{usage}% ",
+        "states": {
+            "critical": 90,
+            "normal": 0
+        },
+        "format-critical": "{usage}% ",
+        "interval": 30,
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "", // 
+        "format-alt": "{percentage}% ", // "{used:0.1f}G/{total:0.1f}G"
+        "states": {
+            "critical": 90,
+            "normal": 0
+        },
+        "format-critical": "{percentage}% ",
+        "interval": 30,
+        "tooltip": false
+    },
+
+    "disk": {
+        "interval": 600,
+        "format": "", //  
+        "format-alt": "{free} ", // "{used}/{total}"
+        "tooltip": false
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 55,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""],
+        "format-alt": "{temperatureC}°C {icon}",
+        "interval": 10,
+        "tooltip": false
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "", // 
+        "format-alt": "{percent}% ",
+        "on-scroll-up": "brightnessctl set +1%",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "tooltip": false
+        // "format-icons": ["", ""]
+    },
+
+    "battery": {
+        "interval": 60,
+        "states": {
+            "good": 100,
+            "normal": 80,
+            "caution": 35,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "format-charging": "{time} | {capacity}% ",
+        "format-plugged": "{time} | {capacity}% ",
+        "format-full": "",
+        "format-alt": "{time} | {capacity}% {icon}",
+        "format-critical": "{capacity}% {icon}",
+        "format-time": "{H}:{m}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false
+    },
+
+    "battery#bat2": {"bat": "BAT2"},
+
+    "network": {
+        "format-wifi": "", // 
+        "format-ethernet": "",
+        "format-linked": "",
+        "format-disconnected": "",
+        "format-alt": "{bandwidthDownBits} {bandwidthUpBits} ",
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "format-wifi": " {essid} ({signalStrength}%)",
+        // "format-ethernet": " Wired Connection",
+        // "format-linked": " Linked",
+        // "format-disconnected": " No Networks",
+        // "format-alt": " {bandwidthDownBits} {bandwidthUpBits}",
+        // "format-alt": " {ifname}: {ipaddr}/{cidr}",
+        // "max-length": 50,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{format_source}  {icon}",
+        "format-bluetooth": "{format_source}  {icon}",
+        "format-bluetooth-muted": "{format_source}  {icon}",
+        "format-muted": "{format_source}  {icon}",
+        // "format-source": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "hands-free": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "headset": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "phone": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "portable": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "car": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"],
+            "default": [" ○○○○○", " ●○○○○", " ●●○○○", " ●●●○○", " ●●●●○", " ●●●●●"]
+            // "default": ["", ""]
+        },
+        "tooltip": false,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    },
+
+    "custom/power": {
+        "format":"",
+        "on-click": "$HOME/.config/scripts/power.sh",
+        "tooltip": false
+    },
+
+    "custom/applauncher": {
+        "format": "", //
+        "on-click": "nwggrid",
+        "tooltip": false
+    },
+
+    "custom/screenrecording": {
+        "format": "{}",
+        "exec": "echo ●",
+        "exec-if": "pgrep wf-recorder",
+        "interval": 10,
+        "tooltip": false
+    },
+
+    "custom/audiorecording": {
+        "format": "{}",
+        "exec": "echo ●",
+        "exec-if": "pgrep pw-record",
+        "interval": 10,
+        "tooltip": false
+    },
+
+    "custom/playerctl": {
+        "format": "{icon}  {0}",
+        "format-icons": {
+            "Playing": "",
+            "Paused": "",
+            "Stopped": ""
+        },
+        "exec": "$HOME/.config/scripts/playerctl.sh",
+        "exec-if": "playerctl status",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "on-scroll-up": "playerctl position 3+",
+        "on-scroll-down": "playerctl position 3-",
+        // "interval": "once",
+        // "signal": 4,
+        "interval": 5,
+        "max-length": 70,
+        "exec-on-event": false,
+        "escape": false,
+        "tooltip": false
+    }
+
+// todo stopwatch notifications pomodoro health backup&sync newmail
+//    "custom/pomodoro": {
+//        "format": "",
+//        "format-alt": "{}  ",
+//        "exec": "echo $((500 - $SECONDS))",
+//        "exec-on-event": true,
+//        "tooltip": false
+//    }
+//
+//    "custom/stopwatch": {
+//        "format": "",
+//        "format-alt": "{} ",
+//        "exec": "$HOME/.config/scripts/stopwatch.sh",
+//        "on-click": "~/.config/waybar/stopwatch.sh",
+//        "on-click-right": "~/.config/waybar/stopwatch.sh --stop",
+//        "return-type": "json"
+//    }
+//
+//    "custom/notifications": {
+//        "format": " {}",
+//        "format-alt": "                                            ",
+//        "tooltip": false
+//    }
+//
+//     "custom/wallpaper": {
+//         "format": "",
+//         "on-click": "swaymsg output '*' bg `find $HOME/Pictures/Wallpapers/New -type f | shuf -n 1` fill",
+//         "tooltip": false
+//     }
+//
+//     "custom/packages": {
+//         "format": "",
+//         "format-alt": "{} ",
+//         "exec": "checkupdates | wc -l",
+//         "interval": 3600,
+//         "on-click-middle": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar",
+//         "exec-on-event": false,
+//         "signal": 8,
+//         "tooltip": false
+//     },
+//
+//     "custom/clipman": {
+//         "format": "",
+//         "on-click": "clipman pick -t wofi",
+//         "tooltip": false
+//     },
+//
+//     "custom/weather": {
+//         "format": {},
+//         "exec": "$HOME/.config/scripts/weather.sh",
+//         "interval": 3600,
+//         "tooltip": false
+//     },
+//
+//    "custom/youtube": {
+//        "format": "",
+//        "on-click": "firefox https://www.youtube.com/",
+//        "tooltip": false
+//    },
+//
+//    "custom/twitch": {
+//        "format": "",
+//       "on-click": "firefox https://www.twitch.tv/",
+//        "tooltip": false
+//    },
+//
+//    "custom/reddit": {
+//        "format": "",
+//        "on-click": "firefox https://www.reddit.com/",
+//        "tooltip": false
+//    },
+//
+//   "custom/discord": {
+//        "format": "",
+//        "on-click": "firefox https://discord.com/app",
+//        "tooltip": false
+//    },
+//
+//   "custom/github": {
+//        "format": "",
+//        "on-click": "firefox https://github.com/",
+//        "tooltip": false
+//    },
+//
+//    "custom/spotify": {
+//        "format": "",
+//        "on-click": "firefox https://open.spotify.com/",
+//        "tooltip": false
+//    },
+//
+// This cmus module does't work for now, since waybar doesn't accept custom json formatting
+//      "custom/cmus": {
+//         "exec": "$HOME/.config/scripts/cmus.sh",
+//         "format": "🎜 {shuffle} {repeat}{repeat_current} {status} {title}",
+//         "shuffle": {
+//             "true": ""
+//         },
+//         "repeat": {
+//             "true": ""
+//         },
+//         "repeat_current": {
+//             "true": " 1"
+//         },
+//         "state-icons": {
+//             "paused": "",
+//             "playing": ""
+//         },
+//         "return-type": "json",
+//         "interval": 10,
+//         "exec-if": "pgrep cmus",
+//         "on-click": "cmus-remote -u",
+//         "tooltip": false,
+//         "escape": true
+//         "max-length": 100,
+//     }
+//
+//    "custom/media": {
+//          "format": "{icon} {}",
+//          "return-type": "json",
+//          "max-length": 40,
+//          "format-icons": {
+//              "spotify": "",
+//              "default": "🎜"
+//          },
+//         "escape": true,
+//        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+//        "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+//    }
+
+}

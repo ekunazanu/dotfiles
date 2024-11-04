@@ -1,0 +1,132 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Inter, SourceSansPro, FiraSans, Roboto, sans-serif;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {background-color: #181a16; color: #cad8b1;}
+
+/*
+window#waybar.hidden {opacity: 0.2;}
+window#waybar.empty {background-color: transparent;}
+window#waybar.solo {background-color: #FFFFFF;}
+*/
+
+#taskbar button {color: #3b4252;}
+#taskbar button.active {color: #e5e9f0;}
+#taskbar button:hover {background-color: #e5e9f0; color: #00010a}
+/*
+#workspaces button {color: #3a575c; font-size: 20px; padding: 0 8px;}
+#workspaces button.persistent {color: #e5e9f0;}
+#workspaces button:hover {background: #00010a; box-shadow: inherit; text-shadow: inherit;}
+#workspaces button.focused {box-shadow: inset 0 -3px 0 #3a575c;}
+#workspaces button.urgent {background-color: #ff4151; color: #e5e9f0; box-shadow: none;}
+for #workspaces button:hover use background not background-color
+*/
+
+#workspaces button {color: #4c566a; font-size: 14px; padding: 0 8px; box-shadow: none;}
+#workspaces button.persistent {color: #586048; background: none; box-shadow: none;}
+#workspaces button:hover {background: #181a16; box-shadow: inherit; text-shadow: inherit;}
+#workspaces button.focused {box-shadow: inset 0 -3px 0 #4c566a;}
+#workspaces button.current_output {color: #cad8b1;}
+#workspaces button.current_output.visible {box-shadow: inset 0 -3px 0 #cad8b1;}
+#workspaces button.current_output.focused {box-shadow: inset 0 -3px 0 #cad8b1; color: #cad8b1;}
+#workspaces button.urgent {background-color: #a3332c; color: #cad8b1; box-shadow: none;}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-cmus,
+#custom-power,
+#custom-applauncher,
+#custom-clipman,
+#custom-weather,
+#custom-wallpaper,
+#custom-playerctl,
+#custom-pomodoro,
+#custom-stopwatch,
+#custom-notifications,
+#custom-packages,
+#tray,
+#mode,
+#idle_inhibitor,
+#window,
+#taskbar,
+#scratchpad,
+#keyboard-state,
+#mpd {padding: 0 6px}
+
+#battery.warning:not(.charging) {background-color: #e0c98a; color: #030400;}
+#battery.caution:not(.charging) {color: #e0c98a;}
+#battery.good.charging {background-color: #cad8b1; color: #030400;}
+#battery.critical:not(.charging) {
+    background-color: #cad8b1;
+    color: #030400;
+    animation-name: red;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {background-color: #000000;}
+#idle_inhibitor.activated {background-color: #cad8b1; color: #030400; padding: 0 7px;}
+#cpu.critical, #memory.critical, #temperature.critical {background-color: #a3332c; color: #cad8b1;}
+#network.disconnected, #pulseaudio.muted, #custom-playerctl.Stopped, #custom-playerctl.Paused {color: #586048;}
+#custom-screenrecording {color: #f18e91;}
+#custom-audiorecording {color: #a6cf88;}
+#custom-screenrecording, #custom-audiorecording {
+    font-size: 16px;
+    padding: 0 3px;
+    animation-name: black;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+@keyframes red {
+    to {
+        background-color: #a3332c;
+        color: #cad8b1;
+    }
+}
+
+@keyframes black {
+    to {
+        color: #030400;
+    }
+}
+
+/*
+#custom-youtube,
+#custom-twitch,
+#custom-reddit,
+#custom-discord,
+#custom-github,
+#custom-spotify {padding: 0 8px;}
+#custom-youtube {background-color: #ff0000;}
+#custom-twitch {background-color: #a970ff;}
+#custom-reddit {background-color: #ff4500;}
+#custom-discord {background-color: #5865f2;}
+#custom-github {background-color: #161b22;}
+#custom-spotify {background-color: #1bae51;}
+
+#custom-media {background-color: #66cc99; color: #2a5c45; min-width: 100px;}
+#custom-media.custom-spotify {background-color: #66cc99;}
+#custom-media.custom-vlc {background-color: #ffa000;}
+#custom-cmus {color: #fffffff;}
+#mpd.disconnected {color: #666666;}
+#mpd.stopped {color: #666666;}
+#custom-screencast {color: #ee3a3a;}
+#tray {background-color: #e5e9f0; color: #00010a;}
+*/

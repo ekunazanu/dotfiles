@@ -1,0 +1,61 @@
+max-visible=4
+sort=-priority
+layer=overlay
+anchor=top-right
+on-button-middle=exec makoctl dismiss -a
+on-button-right=exec makoctl dismiss -g
+font=SourceSansPro 10
+background-color=#cad8b1
+text-color=#030400
+width=350
+height=150
+margin=15
+padding=10,15
+border-size=0
+border-radius=0
+progress-color=over #a6cf88
+icons=0
+markup=1
+actions=1
+history=1
+max-history=100
+format=<small>%a</small>\n<b>%s</b>\n\n%b
+text-alignment=left
+default-timeout=5000
+ignore-timeout=0
+group-by=app-name,urgency,expiring
+
+[hidden]
+format=%h more notifications. %t total.
+
+[urgency="low"]
+background-color=#030400
+text-color=#cad8b1
+
+[mode=do-not-disturb]
+ignore-timeout=1
+default-timeout=0
+invisible=1
+
+[urgency="high" mode=do-not-disturb]
+invisible=0
+
+[mode=away]
+default-timeout=0
+ignore-timeout=1
+
+[urgency="high"]
+background-color=#f18e91
+text-color=#030400
+progress-color=over #030400
+group-by=app-name,expiring
+format=<small>%a</small>\n<b>%s</b>\n\n%b
+ignore-timeout=1
+default-timeout=0
+
+[grouped]
+format=<small>%a</small> (%g)\n<b>%s</b>\n\n%b
+
+[app-name="Dictionary"]
+height=700
+width=380

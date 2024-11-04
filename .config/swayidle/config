@@ -1,0 +1,8 @@
+timeout 60 'makoctl set-mode away' resume 'makoctl set-mode default'
+timeout 150 'chayang -d 5 && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+timeout 180 'swaylock'
+timeout 360 'systemctl suspend -i'
+before-sleep 'swaylock'
+after-resume 'swaymsg "output * dpms on"'
+lock 'swaylock'
+# before-sleep 'playerctl pause'

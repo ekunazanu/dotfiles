@@ -1,0 +1,18 @@
+{
+    "name": "green",
+    "wallpaper": "a",
+    "accent": "80c990",
+    "text": "101010",
+    "texlight": "c0c0c0",
+    "background": "101010",
+
+    "black": "031310",
+    "red": "efa6a2",
+    "green": "80c990",
+    "yellow": "a69460",
+    "blue": "a3b8ef",
+    "magenta": "e6a3dc",
+    "cyan": "50cacd",
+    "white": "c0c0c0",
+    "grey": "808080"
+}
