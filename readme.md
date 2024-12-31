@@ -180,7 +180,7 @@ MOZ_ACCELERATED=1
 ##### Base
     base base-devel arch-install-scripts intel-ucode amd-ucode linux linux-lts linux-firmware man-db man-pages dosfstools (efibootmgr grub nano vilvm2 btrfs-progs snapper nvme-cli)
 ##### System
-    git ntp(?) rsync reflector pacman-contrib openssh playerctl brightnessctl libnotify pass bat ripgrep eza btop wireplumber pavucontrol(maybe?)
+    git git-lfs ntp(?) rsync reflector pacman-contrib openssh playerctl brightnessctl libnotify pass bat ripgrep eza btop wireplumber pavucontrol(maybe?)
 #### Shell
     zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
 #### Networking
