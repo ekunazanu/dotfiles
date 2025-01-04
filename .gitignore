@@ -6,8 +6,6 @@
 !.zshenv
 !.zprofile
 !.p10k.zsh
-!.taskrc
-!.task/
 !.config/
 .config/*
 !.config/sway
@@ -20,7 +18,6 @@
 !.config/foot
 !.config/bat
 !.config/mpv
-.config/weechat
 !.config/nvim
 .config/nvim/plugged
 !.config/scripts
