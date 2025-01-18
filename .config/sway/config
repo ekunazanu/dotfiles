@@ -1,0 +1,439 @@
+# Variables
+set $mod Mod4
+
+# Keyboard
+input "type:keyboard" {
+    repeat_delay 500
+    repeat_rate 30
+    xkb_layout us,us(colemak_dh)
+    xkb_options compose:ralt
+    xkb_capslock disabled
+    xkb_numlock disabled
+}
+
+# Mouse
+input "type:pointer" {
+    accel_profile adaptive
+    pointer_accel 0.2
+    scroll_factor 1
+    left_handed disabled
+    middle_emulation enabled
+}
+
+# Touchpad
+input "type:touchpad" {
+    dwt enabled
+    drag enabled
+    tap enabled
+    middle_emulation disabled
+    drag_lock enabled
+    left_handed disabled
+    click_method clickfinger
+    tap_button_map lrm
+    scroll_method two_finger
+    natural_scroll disabled
+    scroll_factor 1
+    accel_profile adaptive
+    pointer_accel 0.2
+}
+
+# Basic key bindings
+bindsym --no-repeat $mod+Return exec footclient
+bindsym --no-repeat $mod+Shift+Return exec foot
+bindsym --no-repeat $mod+d exec tofi-drun --terminal footclient | xargs swaymsg exec --
+bindsym --no-repeat $mod+Shift+q kill
+bindsym --no-repeat $mod+Shift+c reload
+bindsym --no-repeat --locked $mod+k input "type:keyboard" xkb_switch_layout next
+bindsym --whole-window $mod+button2 kill
+bindsym button2 kill
+
+# Layout
+bindsym --no-repeat $mod+h split horizontal
+bindsym --no-repeat $mod+v split vertical
+bindsym --no-repeat $mod+n split none
+bindsym --no-repeat $mod+s layout stacking
+bindsym --no-repeat $mod+w layout tabbed
+bindsym --no-repeat $mod+e layout toggle split
+bindsym --no-repeat $mod+p sticky toggle
+bindsym --no-repeat $mod+b border toggle
+bindsym --no-repeat $mod+f fullscreen toggle
+bindsym --no-repeat $mod+Alt+f fullscreen toggle global
+bindsym --no-repeat $mod+Shift+space floating toggle
+bindsym button3 floating toggle
+
+# Focus
+bindsym --no-repeat $mod+Up focus up
+bindsym --no-repeat $mod+Down focus down
+bindsym --no-repeat $mod+Left focus left
+bindsym --no-repeat $mod+Right focus right
+bindsym --no-repeat $mod+Alt+Up focus output up
+bindsym --no-repeat $mod+Alt+Down focus output down
+bindsym --no-repeat $mod+Alt+Left focus output left
+bindsym --no-repeat $mod+Alt+Right focus output right
+bindsym --no-repeat $mod+a focus parent
+bindsym --no-repeat $mod+Shift+a focus child
+bindsym --no-repeat $mod+grave scratchpad show
+bindsym --no-repeat $mod+space focus mode_toggle
+
+# Focus to workspace
+bindsym --no-repeat $mod+1 workspace 1
+bindsym --no-repeat $mod+2 workspace 2
+bindsym --no-repeat $mod+3 workspace 3
+bindsym --no-repeat $mod+4 workspace 4
+bindsym --no-repeat $mod+5 workspace 5
+bindsym --no-repeat $mod+6 workspace 6
+bindsym --no-repeat $mod+7 workspace 7
+bindsym --no-repeat $mod+8 workspace 8
+bindsym --no-repeat $mod+9 workspace 9
+bindsym --no-repeat $mod+0 workspace 10
+# with Numpad
+bindsym $mod+KP_1 workspace 1
+bindsym $mod+KP_2 workspace 2
+bindsym $mod+KP_3 workspace 3
+bindsym $mod+KP_4 workspace 4
+bindsym $mod+KP_5 workspace 5
+bindsym $mod+KP_6 workspace 6
+bindsym $mod+KP_7 workspace 7
+bindsym $mod+KP_8 workspace 8
+bindsym $mod+KP_9 workspace 9
+bindsym $mod+KP_0 workspace 10
+# next, prev
+bindsym --no-repeat $mod+Tab workspace next_on_output
+bindsym --no-repeat $mod+Shift+Tab workspace prev_on_output
+bindsym --no-repeat $mod+Alt+Tab workspace next
+bindsym --no-repeat $mod+Alt+Shift+Tab workspace prev
+bindsym --no-repeat Alt+Tab workspace back_and_forth
+
+# Move
+bindsym $mod+Shift+Up move up 10 px
+bindsym $mod+Shift+Down move down 10 px
+bindsym $mod+Shift+Left move left 10 px
+bindsym $mod+Shift+Right move right 10 px
+bindsym --no-repeat $mod+Alt+Shift+Up move container output up
+bindsym --no-repeat $mod+Alt+Shift+Down move container output down
+bindsym --no-repeat $mod+Alt+Shift+Left move container output left
+bindsym --no-repeat $mod+Alt+Shift+Right move container output right
+bindsym --no-repeat $mod+Ctrl+Alt+Shift+Up move workspace output up
+bindsym --no-repeat $mod+Ctrl+Alt+Shift+Down move workspace output down
+bindsym --no-repeat $mod+Ctrl+Alt+Shift+Left move workspace output left
+bindsym --no-repeat $mod+Ctrl+Alt+Shift+Right move workspace output right
+bindsym --no-repeat $mod+Shift+grave move container scratchpad
+bindsym button5 move container scratchpad
+
+# Move to workspace
+bindsym --no-repeat $mod+Shift+1 move container workspace 1
+bindsym --no-repeat $mod+Shift+2 move container workspace 2
+bindsym --no-repeat $mod+Shift+3 move container workspace 3
+bindsym --no-repeat $mod+Shift+4 move container workspace 4
+bindsym --no-repeat $mod+Shift+5 move container workspace 5
+bindsym --no-repeat $mod+Shift+6 move container workspace 6
+bindsym --no-repeat $mod+Shift+7 move container workspace 7
+bindsym --no-repeat $mod+Shift+8 move container workspace 8
+bindsym --no-repeat $mod+Shift+9 move container workspace 9
+bindsym --no-repeat $mod+Shift+0 move container workspace 10
+# with NumPad
+bindsym --no-repeat $mod+Shift+KP_1 move container workspace 1
+bindsym --no-repeat $mod+Shift+KP_2 move container workspace 2
+bindsym --no-repeat $mod+Shift+KP_3 move container workspace 3
+bindsym --no-repeat $mod+Shift+KP_4 move container workspace 4
+bindsym --no-repeat $mod+Shift+KP_5 move container workspace 5
+bindsym --no-repeat $mod+Shift+KP_6 move container workspace 6
+bindsym --no-repeat $mod+Shift+KP_7 move container workspace 7
+bindsym --no-repeat $mod+Shift+KP_8 move container workspace 8
+bindsym --no-repeat $mod+Shift+KP_9 move container workspace 9
+bindsym --no-repeat $mod+Shift+KP_0 move container workspace 10
+
+# Resize
+bindsym $mod+equal resize grow width 10 px
+bindsym $mod+minus resize shrink width 10 px
+bindsym $mod+Shift+equal resize grow height 10 px
+bindsym $mod+Shift+minus resize shrink height 10 px
+
+# Gaps
+mode "Gaps" {
+    bindsym equal gaps outer current plus 15
+    bindsym minus gaps outer current minus 15
+    bindsym Shift+equal gaps inner current plus 15
+    bindsym Shift+minus gaps inner current minus 15
+    bindsym Up gaps top current minus 15
+    bindsym Down gaps bottom current minus 15
+    bindsym Left gaps left current minus 15
+    bindsym Right gaps right current minus 15
+    bindsym Shift+Up gaps top current plus 15
+    bindsym Shift+Down gaps bottom current plus 15
+    bindsym Shift+Left gaps left current plus 15
+    bindsym Shift+Right gaps right current plus 15
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym --no-repeat $mod+g mode "Gaps"
+
+# Move Cursor
+mode "Cursor" {
+    bindsym Up seat - cursor move 0 -20
+    bindsym Down seat - cursor move 0 20
+    bindsym Left seat - cursor move -20 0
+    bindsym Right seat - cursor move 20 0
+    bindsym Shift+Up seat - cursor move 0 -1
+    bindsym Shift+Down seat - cursor move 0 1
+    bindsym Shift+Left seat - cursor move -1 0
+    bindsym Shift+Right seat - cursor move 1 0
+    bindsym comma seat - cursor press button1
+    bindsym period seat - cursor press button3
+    bindsym slash seat - cursor press button2
+    bindsym Shift+comma seat - cursor release button1
+    bindsym Shift+period seat - cursor release button3
+    bindsym Shift+slash seat - cursor release button2
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym --no-repeat $mod+c mode "Cursor"
+
+# Outputs
+mode "Output Management" {
+    bindsym Shift+Delete output - disable
+    bindsym --release space output - power toggle
+    bindsym --no-repeat 1 output - mode 640x480
+    bindsym --no-repeat 2 output - mode 800x600
+    bindsym --no-repeat 3 output - mode 1280x720
+    bindsym --no-repeat 4 output - mode 1366x768
+    bindsym --no-repeat 5 output - mode 1600x900
+    bindsym --no-repeat 6 output - mode 1920x1080
+    bindsym --no-repeat 7 output - mode 2560x1440
+    bindsym --no-repeat 8 output - mode 3840x2160
+    bindsym --no-repeat comma output - transform 90 anticlockwise
+    bindsym --no-repeat period output - transform 90 clockwise
+    bindsym --no-repeat slash output - transform flipped
+    bindsym --no-repeat BackSpace output - transform normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym --no-repeat $mod+o mode "Output Management"
+bindsym --no-repeat --release --locked $mod+Escape output - power toggle
+
+# Inputs
+mode "Input Management" {
+    bindsym --locked --no-repeat t input "type:touchpad" events enabled
+    bindsym --locked --no-repeat Shift+t input "type:touchpad" events disabled
+    bindsym --locked --no-repeat p input "type:pointer" events enabled
+    bindsym --locked --no-repeat Shift+p input "type:pointer" events disabled
+    bindsym --locked --no-repeat l input "type:touch" events enabled
+    bindsym --locked --no-repeat Shift+l input "type:touch" events disabled
+    bindsym --locked Return mode "default"
+    bindsym --locked Escape mode "default"
+}
+bindsym --no-repeat $mod+i mode "Input Management"
+
+# Power Options
+mode "Power" {
+    bindsym --locked --no-repeat l exec swaylock, mode "default"
+    bindsym --locked --no-repeat s exec systemctl suspend -i, mode "default"
+    bindsym --locked --no-repeat Shift+r exec systemctl reboot -i, mode "default"
+    bindsym --locked --no-repeat Shift+s exec systemctl poweroff -i, mode "default"
+    bindsym --locked --no-repeat Shift+e exit, mode "default"
+    bindsym --locked Return mode "default"
+    bindsym --locked Escape mode "default"
+}
+bindsym --locked --no-repeat $mod+x mode "Power"
+
+# Bindswitches
+# bindswitch --locked lid:on
+# bindswitch --locked lid:off
+
+# Bindgestures
+bindgesture swipe:3:up move up 50 px
+bindgesture swipe:3:down move down 50 px
+bindgesture swipe:3:left move left 50 px
+bindgesture swipe:3:right move right 50 px
+bindgesture swipe:4:up scratchpad show
+bindgesture swipe:4:down move container scratchpad
+bindgesture swipe:4:left workspace prev
+bindgesture swipe:4:right workspace next
+# bindgesture pinch:3:inward zoom in
+# bindgesture pinch:3:outward zoom out
+
+# Volume
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked Shift+XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+bindsym --locked Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+bindsym --locked --no-repeat XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked Alt+XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+
+bindsym --locked Alt+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-
+bindsym --locked Alt+Shift+XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+
+bindsym --locked Alt+Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-
+bindsym --locked --no-repeat Alt+XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked --no-repeat XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked --no-repeat $mod+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Brightness
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
+bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
+
+# Media
+bindsym --locked --no-repeat XF86AudioPlay exec playerctl play-pause
+bindsym --locked --no-repeat XF86AudioNext exec playerctl next
+bindsym --locked --no-repeat XF86AudioPrev exec playerctl previous
+bindsym --locked Shift+XF86AudioNext exec playerctl position 5+
+bindsym --locked Shift+XF86AudioPrev exec playerctl position 5-
+
+# Screenshots
+bindsym --no-repeat Print exec grim "$HOME/Pictures/screenshots/$(date +'%F-%T.png')"
+bindsym --no-repeat Shift+Print exec slurp | grim -g - "$HOME/Pictures/screenshots/$(date +'%F-%T.png')"
+bindsym --no-repeat Alt+Print exec slurp -o | grim -g - "$HOME/Pictures/screenshots/$(date +'%F-%T.png')"
+bindsym --no-repeat Ctrl+Print exec grim - | wl-copy
+bindsym --no-repeat Ctrl+Shift+Print exec slurp | grim -g - - | wl-copy
+bindsym --no-repeat Ctrl+Alt+Print exec slurp -o | grim -g - - | wl-copy
+
+# Screencasts
+bindsym --no-repeat $mod+F1 exec wf-recorder -d /dev/dri/renderD128 -c hevc_vaapi --audio="$(pactl list sources | grep "Name" | grep "output" | cut -c 8-)" -f "$HOME/Videos/screencasts/$(date +'%F-%T.mp4')"
+bindsym --no-repeat $mod+Shift+F1 exec wf-recorder -d /dev/dri/renderD128 -c hevc_vaapi -g "$(slurp)" --audio="$(pactl list sources | grep "Name" | grep "output" | cut -c 8-)" -f "$HOME/Videos/screencasts/$(date +'%F-%T.mp4')"
+bindsym --no-repeat $mod+Alt+F1 exec wf-recorder -d /dev/dri/renderD128 -c hevc_vaapi -g "$(slurp -o)" --audio="$(pactl list sources | grep "Name" | grep "output" | cut -c 8-)" -f "$HOME/Videos/screencasts/$(date +'%F-%T.mp4')"
+bindsym --no-repeat $mod+F5 exec killall -s SIGINT wf-recorder
+
+# Audio Recording
+bindsym --no-repeat $mod+F2 exec pw-record -P "{stream.capture.sink=true}" "$HOME/Music/recordings/$(date +'%F-%T.flac')"
+bindsym --no-repeat $mod+F6 exec killall -s SIGINT pw-record
+
+# Clipboard Manager
+bindsym  --no-repeat $mod+z exec cliphist list | tofi | cliphist decode | wl-copy
+bindsym  --no-repeat $mod+Shift+z exec cliphist list | tofi | cliphist delete && wl-copy -c
+bindsym  --no-repeat $mod+Ctrl+Shift+z exec cliphist wipe
+
+# Scripts & Extras
+bindsym --no-repeat $mod+r exec $HOME/.config/scripts/winswitch.sh
+bindsym --no-repeat $mod+t exec $HOME/.config/scripts/tools.sh
+#bindsym $mod+r floating enable, border pixel 2, resize set 320 180, move position cursor, sticky enable
+bindsym $mod+comma opacity minus 0.05
+bindsym $mod+period opacity plus 0.05
+
+# Rules
+gaps inner 15
+gaps outer 15
+workspace 3 gaps outer 0
+workspace 3 gaps inner 0
+workspace 4 gaps outer 0
+workspace 4 gaps inner 0
+workspace 5 gaps outer 0
+workspace 5 gaps inner 0
+workspace 6 gaps outer 0
+workspace 6 gaps inner 0
+for_window [workspace=10] floating enabled
+
+# Theme
+default_border normal 2
+default_floating_border normal 2
+title_align left
+titlebar_padding 12 8
+titlebar_border_thickness 0
+font pango:Inter 12px
+                         #border #backgr #text   #indica #child_border
+client.urgent            #a3332c #a3332c #cad8b1 #fdfffa #2a2d25
+client.unfocused         #181a16 #181a16 #586048 #3b4252 #2a2d25
+client.focused           #3f4536 #3f4536 #cad8b1 #4c566a #2a2d25
+client.focused_inactive  #2a2d25 #2a2d25 #3f4536 #3b4252 #2a2d25
+client.focused_tab_title #2a2d25 #2a2d25 #cad8b1
+output * bg $HOME/Pictures/wallpapers/muted/darkleaves.png fill
+
+# Options
+# xwayland disable
+# seat * hide_cursor 5000
+default_orientation auto
+workspace_layout tabbed
+smart_gaps off
+smart_borders off
+floating_modifier $mod normal
+floating_maximum_size -1 x -1
+floating_minimum_size 275 x 150
+focus_follows_mouse always
+focus_on_window_activation urgent
+focus_wrapping yes
+hide_edge_borders none
+tiling_drag enable
+tiling_drag_threshold 20
+show_marks yes
+popup_during_fullscreen smart
+mouse_warping output
+workspace_auto_back_and_forth no
+
+# Startup
+exec swayidle -w
+exec mako
+exec wlsunset -t 3000 -T 6500 -g 1.0 -s 18:00 -S 06:30 -d 3600
+exec wl-paste --watch cliphist store
+exec foot --server
+
+# Primary bar
+bar {
+    id 1
+    output eDP-1
+    mode dock
+    position top
+    gaps 0 0
+    height 30
+    binding_mode_indicator yes
+    workspace_buttons yes
+    workspace_min_width 32
+    wrap_scroll no
+    strip_workspace_numbers no
+    strip_workspace_name no
+    pango_markup disabled
+    font pango:Inter 12px
+    colors {
+        background #181a16
+        statusline #cad8b1
+        separator #181a16
+        # focused_background #181a16
+        # focused_statusline #cad8b1
+        focused_workspace #181a16 #3f4536 #cad8b1
+        active_workspace #181a16 #181a16 #cad8b1
+        inactive_workspace #181a16 #181a16 #3f4536
+        urgent_workspace #a3332c #a3332c #cad8b1
+        binding_mode #181a16 #181a16 #cad8b1
+    }
+    separator_symbol |
+    swaybar_command swaybar
+    status_command i3blocks
+    status_edge_padding 0
+    status_padding 0
+}
+
+# Secondary bars
+bar {
+    id 2
+    output HDMI-A-1
+    mode dock
+    position top
+    gaps 0 0
+    height 30
+    binding_mode_indicator no
+    workspace_buttons yes
+    workspace_min_width 32
+    wrap_scroll no
+    strip_workspace_numbers no
+    strip_workspace_name no
+    pango_markup disabled
+    font pango:Inter 12px
+    colors {
+        background #181a16
+        statusline #cad8b1
+        separator #181a16
+        # focused_background #181a16
+        # focused_statusline #cad8b1
+        focused_workspace #181a16 #3f4536 #cad8b1
+        active_workspace #181a16 #181a16 #cad8b1
+        inactive_workspace #181a16 #181a16 #3f4536
+        urgent_workspace #a3332c #a3332c #cad8b1
+        binding_mode #181a16 #181a16 #cad8b1
+    }
+    swaybar_command swaybar
+#    separator_symbol |
+#    status_command i3blocks
+#    status_edge_padding 0
+#    status_padding 0
+}
+
+# Include
+include /etc/sway/config.d/*

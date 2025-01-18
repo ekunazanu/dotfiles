@@ -1,0 +1,9 @@
+--paging=always
+--tabs=4
+--wrap=character
+--italic-text=always
+--color=auto
+--decorations=auto
+--theme=base16
+--style=full
+--diff-context=5

@@ -1,0 +1,58 @@
+# List of valid properties:
+# align color command full_text instance interval label min_width
+# name separator separator_block_width short_text signal urgent
+separator_block_width=16
+markup=none
+
+[player]
+command=$HOME/.config/scripts/bar.media.sh
+interval=10
+
+[network]
+command=$HOME/.config/scripts/bar.network.sh
+interval=60
+
+[volume]
+command=$HOME/.config/scripts/bar.volume.sh
+interval=60
+
+[microphone]
+command=$HOME/.config/scripts/bar.mic.sh
+interval=60
+
+[temperature]
+command=$HOME/.config/scripts/bar.temperature.sh
+interval=30
+
+[load]
+command=cat /proc/loadavg | cut -c -4
+interval=30
+
+[memory]
+command=$HOME/.config/scripts/bar.memory.sh
+interval=30
+
+[disk]
+command=$HOME/.config/scripts/bar.disk.sh
+interval=7200
+
+[battery]
+command=$HOME/.config/scripts/bar.battery.sh
+interval=60
+
+[time]
+command=date '+%a %d %b %R'
+interval=30
+
+[power]
+full_text=
+min_width=24
+command=swaynag -t message -m "Power Menu Options" -Z "Lock" "swaylock" -Z "Suspend" "systemctl suspend -i" -Z "Logout" "swaymsg exit" -Z "Reboot" "systemctl reboot -i" -Z "Shutdown" "systemctl poweroff -i"
+interval=0
+
+# [brightness]
+# command=brightnessctl get
+# interval=30
+# [weather]
+# command=curl -Ss 'https://wttr.in/blr?format=%t' | xargs echo
+# interval=1800

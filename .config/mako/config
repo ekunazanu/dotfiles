@@ -1,0 +1,50 @@
+max-visible=4
+sort=-priority
+layer=overlay
+anchor=top-right
+on-button-middle=exec makoctl dismiss -a
+on-button-right=exec makoctl dismiss -g
+font=Inter 14px
+background-color=#3f4536
+text-color=#cad8b1
+width=350
+height=150
+margin=15
+padding=10,15
+border-size=1
+border-radius=0
+border-color=#cad8b1
+progress-color=over #2a2d25
+icons=0
+markup=1
+actions=1
+history=1
+max-history=100
+format=<small>%a</small>\n<b>%s</b>\n\n\n%b
+text-alignment=left
+default-timeout=5000
+ignore-timeout=0
+group-by=app-name,urgency,expiring
+
+[hidden]
+format=%h more notifications. %t total.
+
+[urgency="low"]
+background-color=#3f4536
+text-color=#cad8b1
+
+[mode=away]
+default-timeout=0
+ignore-timeout=1
+
+[urgency="high"]
+background-color=#a3332c
+text-color=#cad8b1
+progress-color=over #2a2d25
+group-by=app-name,expiring
+format=<small>%a</small>\n<b>%s</b>\n\n\n%b
+ignore-timeout=1
+default-timeout=0
+
+[grouped]
+format=<small>%a</small> (%g)\n<b>%s</b>\n\n\n%b
