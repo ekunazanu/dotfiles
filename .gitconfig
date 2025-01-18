@@ -1,0 +1,20 @@
+[user]
+	name = ekunazanu
+	email = me@ekunazanu.foo
+	signingkey = /home/ekunazanu/.ssh/ekunazanu.pub
+[commit]
+	gpgsign = true
+[merge]
+	tool = nvimdiff
+	conflictstyle = diff3
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/ekunazanu/.ssh/allowed_signers
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
