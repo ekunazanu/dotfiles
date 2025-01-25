@@ -8,6 +8,14 @@ markup=none
 command=$HOME/.config/scripts/bar.media.sh
 interval=10
 
+[taping]
+command=$HOME/.config/scripts/bar.taping.sh
+interval=60
+
+[recording]
+command=$HOME/.config/scripts/bar.recording.sh
+interval=60
+
 [network]
 command=$HOME/.config/scripts/bar.network.sh
 interval=60
