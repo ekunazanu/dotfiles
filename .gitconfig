@@ -1,28 +1,28 @@
 [user]
-	name = ekunazanu
-	email = me@ekunazanu.foo
-	signingkey = /home/ekunazanu/.ssh/ekunazanu.pub
+    name = ekunazanu
+    email = me@ekunazanu.foo
+    signingkey = /home/ekunazanu/.ssh/ekunazanu.pub
 [commit]
-	gpgsign = true
+    gpgsign = true
 [merge]
-	tool = nvimdiff
-	conflictstyle = diff3
+    tool = nvimdiff
+    conflictstyle = diff3
 [mergetool]
-	prompt = false
+    prompt = false
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 [difftool]
-	prompt = false
+    prompt = false
 [help]
-	autocorrect = immediate
+    autocorrect = immediate
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [gpg]
-	format = ssh
+    format = ssh
 [gpg "ssh"]
-	allowedSignersFile = /home/ekunazanu/.ssh/allowed_signers
+    allowedSignersFile = /home/ekunazanu/.ssh/allowed_signers
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
