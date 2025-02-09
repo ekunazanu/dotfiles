@@ -7,6 +7,14 @@
 [merge]
 	tool = nvimdiff
 	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[help]
+	autocorrect = immediate
 [init]
 	defaultBranch = main
 [gpg]
