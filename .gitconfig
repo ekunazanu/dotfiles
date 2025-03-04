@@ -4,6 +4,8 @@
     signingkey = /home/ekunazanu/.ssh/ekunazanu.pub
 [commit]
     gpgsign = true
+[tag]
+    gpgSign = true
 [merge]
     tool = nvimdiff
     conflictstyle = diff3
