@@ -52,6 +52,11 @@ interval=60
 command=date '+%a %d %b %R'
 interval=30
 
+[scratchpad]
+full_text=
+command=swaymsg scratchpad show > /dev/null
+interval=0
+
 [power]
 full_text=
 min_width=24
