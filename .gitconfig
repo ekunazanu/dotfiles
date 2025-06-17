@@ -23,6 +23,9 @@
     format = ssh
 [gpg "ssh"]
     allowedSignersFile = /home/ekunazanu/.ssh/allowed_signers
+[alias]
+    lg = log --all --topo-order --graph --show-signature --tags
+    lgs = log --all --topo-order --graph --show-signature --tags --stat
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
