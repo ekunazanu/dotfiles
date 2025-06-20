@@ -83,7 +83,7 @@ Where `uuid1` is the UUID for /dev/nvme0n1p1, and `uuid3` is the UUID for /dev/m
 ------------------------
 default  arch.conf
 timeout  0
-editor no 
+editor no
 ```
 
 ```
@@ -307,7 +307,7 @@ table inet filter {
 -----------------------------------------
 [Unit]
 Description = Timer for creating BTRFS snapshots.
-Documentation = man:btrfs-subvolume(8) 
+Documentation = man:btrfs-subvolume(8)
 
 [Timer]
 OnCalendar = weekly
