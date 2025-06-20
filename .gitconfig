@@ -23,6 +23,11 @@
     format = ssh
 [gpg "ssh"]
     allowedSignersFile = /home/ekunazanu/.ssh/allowed_signers
+[blame]
+	date = relative
+	coloring = repeatedLines
+[color "blame"]
+	repeatedLines = 8
 [alias]
     lg = log --all --topo-order --graph --show-signature --tags
     lgs = log --all --topo-order --graph --show-signature --tags --stat
