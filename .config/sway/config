@@ -103,6 +103,8 @@ bindsym --no-repeat $mod+Shift+Tab workspace prev_on_output
 bindsym --no-repeat $mod+Alt+Tab workspace next
 bindsym --no-repeat $mod+Alt+Shift+Tab workspace prev
 bindsym --no-repeat Alt+Tab workspace back_and_forth
+bindsym --whole-window $mod+button4 workspace prev_on_output
+bindsym --whole-window $mod+button5 workspace next_on_output
 
 # Move
 bindsym $mod+Shift+Up move up 10 px
