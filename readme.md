@@ -245,7 +245,7 @@ Table = 1000
 
 Prevent other users from reading private keys `# chown root:systemd-network /etc/systemd/network/99-wg0.netdev` and `# chmod 0640 /etc/systemd/network/99-wg0.netdev`. Check connection `# wg`.
 
-8. Enable firewall `# systemctl enable ntables.service`. Set up a simple firewall in /etc/nftables.conf.
+8. Enable firewall `# systemctl enable nftables.service`. Set up a simple firewall in /etc/nftables.conf.
 
 ```
 /etc/nftables.conf
