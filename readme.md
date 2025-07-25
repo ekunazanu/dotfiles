@@ -409,6 +409,8 @@ extensions.pocket.enabled -> false
 
 5. Clone projects to local `$ mkdir Projects && cd Projects && git clone <respositories>`
 
+6. Copy files and directories from previous computer (if available) using `$ scp -r [ekunazanu@copyfromip:]/path/to/old/directory ekunazanu@copytoip:/path/to/new/directory`, where the IP address of the devices can be obtained using `$ ip a`. Ensure SSH is running `# systemctl start ssh.service` and the firewall allows connections on the SSH port.
+
 ## Miscellaneous
 
 Set up miscellaneous configurations as required — eg: change firefox themes, install ublock origin, tree style tabs, translate web pages etc. Edit sway input, output and swaybar profiles and i3blocks command paths as required.
