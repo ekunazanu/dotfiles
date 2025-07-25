@@ -338,6 +338,7 @@ client.focused           #3f4536 #3f4536 #cad8b1 #4c566a #2a2d25
 client.focused_inactive  #2a2d25 #2a2d25 #3f4536 #3b4252 #2a2d25
 client.focused_tab_title #2a2d25 #2a2d25 #cad8b1
 output * bg $HOME/Pictures/wallpapers/muted/darkleaves.png fill
+output eDP-1 scale 1.4
 
 # Options
 # xwayland disable
