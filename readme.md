@@ -405,7 +405,7 @@ auth include login
 
 2. Clone this repository to the home directory `$ git clone "git@codeberg.org:ekunazanu/dotfiles.git"` to /home/ekunazanu/.
 
-3. Install [tofi](https://aur.archlinux.org/packages/tofi) and [chayang](https://aur.archlinux.org/packages/chayang).
+3. Install [tofi](https://aur.archlinux.org/packages/tofi).
 
 4. Change firefox defaults in `about:config` as
 
