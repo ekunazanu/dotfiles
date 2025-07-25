@@ -164,6 +164,16 @@ FallbackDNS = 1.1.1.1 9.9.9.9 8.8.8.8 2606:4700:4700::1111 2620:fe::9 2001:4860:
 6. Enable DHCP via systemd-networkd. Enable systemd-networkd `# systemctl enable systemd-networkd.service` and systemd-networkd-wait-online `# systemctl enable systemd-networkd-wait-online.service`. Add network configuration files in /etc/systemd/network/. Note: The configuration priority is based on file names in lexicographical order.
 
 ```
+/etc/systemd/network/20-simple-wired-dhcp.network
+----------------------------------------------------
+[Match]
+Name=enp1s0
+
+[Network]
+DHCP=yes
+```
+
+```
 /etc/systemd/network/25-simple-wireless-dhcp.network
 ----------------------------------------------------
 [Match]
@@ -173,7 +183,7 @@ Name=wlan0
 DHCP=yes
 ```
 
-Where `wlan0` is the (wireless) interface name from `$ ip a`. Connect to a wireless network `# iwctl station <interface> connect <ssid>`. To connect to known wireless networks automatically on boot, enable iwd `# systemctl enable iwd.service`.
+Where `enp1s0` and `wlan0` are the interface names from `$ ip a`. Connect to a wireless network using `# iwctl station <interface> connect <ssid>`. To connect to known wireless networks automatically on boot, enable iwd `# systemctl enable iwd.service`.
 
 7. For VPN using WireGuard, create virtual device wg0 to tunnel (all) packets to VPN server. The example below uses assumptions about addresses and ports. Use configurations from the VPN provider.
 
