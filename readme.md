@@ -387,7 +387,17 @@ SyslogIdentifier = BTRFS-scrub
 
 Where `uuid` is the UUID for /dev/mapper/root. Enable the timer `# systemctl enable btrfs-scrub.timer`.
 
-10. Reboot `$ systemctl reboot` to ensure systemd unit changes take effect.
+10. For [fingerprint authentication](https://wiki.archlinux.org/title/Fprint) (if the PC [supports it](https://fprint.freedesktop.org/supported-devices.html)), install `# pacman -S fprint` and add a fingerprint `# fprintd-enroll ekunazanu` and verify it `$ fprintd-verify`. To enable fingerprint authentication in swaylock, add these two lines before `auth include login`.
+
+```
+/etc/pam.d/swaylock
+----------------------------------------------------------
+auth sufficient pam_unix.so try_first_pass likeauth nullok
+auth sufficient pam_fprintd.so
+auth include login
+```
+
+11. Reboot `$ systemctl reboot` to ensure systemd unit changes take effect.
 
 ## Userspace
 

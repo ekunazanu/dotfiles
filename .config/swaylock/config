@@ -1,5 +1,4 @@
 daemonize
-ignore-empty-password
 font=Inter
 font-size=14
 show-failed-attempts
