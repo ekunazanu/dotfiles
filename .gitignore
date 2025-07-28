@@ -33,6 +33,3 @@
 /.config/ncspot/*
 !/.config/ncspot/config.toml
 !/.config/scripts
-!/Pictures
-/Pictures/*
-!/Pictures/glsl
