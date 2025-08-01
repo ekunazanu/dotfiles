@@ -33,3 +33,4 @@
 /.config/ncspot/*
 !/.config/ncspot/config.toml
 !/.config/scripts
+!/.config/mimeapps.list
