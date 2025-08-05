@@ -26,7 +26,7 @@ input "type:touchpad" {
     drag enabled
     tap enabled
     middle_emulation disabled
-    drag_lock enabled
+    drag_lock disabled
     left_handed disabled
     click_method clickfinger
     tap_button_map lrm
