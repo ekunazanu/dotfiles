@@ -321,7 +321,7 @@ Documentation = man:btrfs-subvolume(8)
 
 [Timer]
 OnCalendar = weekly
-Acccuracy = 2d
+Accuracy = 2d
 Persistent = true
 
 [Install]
