@@ -70,7 +70,7 @@ Where `uuid1` is the UUID for /dev/nvme0n1p1, and `uuid3` is the UUID for /dev/m
 
 15. Set `LANG=en_US.UTF-8` in /etc/locale.conf and keyboard layout `KEYMAP=us` in /etc/vconsole.conf.
 
-16. Set hostname `lazyleopard` in /etc/hostname.
+16. Set hostname `somerelevantname` in /etc/hostname.
 
 17. Add systemd encrypt [hooks](https://wiki.archlinux.org/title/Mkinitcpio#Common_hooks) for initramfs `HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)` in /etc/mkinitcpio.conf. Recreate initramfs `# mkinitcpio -P`.
 
