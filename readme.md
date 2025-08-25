@@ -332,7 +332,7 @@ WantedBy = timers.target
 /etc/systemd/system/btrfs-snapshot@.service
 -------------------------------------------
 [Unit]
-Description = Create a readonly BTRFS snapshot.
+Description = Create a read-only BTRFS snapshot.
 Documentation = man:btrfs-subvolume(8)
 Conflicts = btrfs-scrub.service
 After = local-fs.target
@@ -362,7 +362,7 @@ Note: Many snapshots can cause performance issues. Periodically delete older sna
 /etc/systemd/system/btrfs-scrub.timer
 -------------------------------------
 [Unit]
-Description = BTRFS scrub timer
+Description = Timer for performing BTRFS scrubs.
 Documentation = man:btrfs-subvolume(8)
 
 [Timer]
@@ -378,7 +378,7 @@ WantedBy = timers.target
 /etc/systemd/system/btrfs-scrub.service
 ---------------------------------------
 [Unit]
-Description = Perform a BTRFS scrub
+Description = Perform a BTRFS scrub.
 Documentation = man:btrfs-subvolume(8)
 Conflicts = btrfs-snapshot@.service shutdown.target sleep.target
 Before = shutdown.target sleep.target
