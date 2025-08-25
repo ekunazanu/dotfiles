@@ -30,7 +30,7 @@ The following are the steps to create an encrypted-BTRFS Arch setup on an SSD. T
 
 7. Mount the partition `# mount /dev/mapper/root /mnt` and create BTRFS subvolumes `# btrfs subvolume create /mnt/{@,@home,@log,@var,@snapshots}`.
 
-8. Unmount the partition and mount the subvolumes `# mount --mkdir -o rw,noatime,compress-force=zstd:3,nodiscard,subvol=@ /dev/mapper/root /mnt/`. Similarly mount the subvolumes @home, @var, @log, and @snapshots at /mnt/home, /mnt/var, /mnt/var/log, and /mnt/snapshots respectively. Mount boot partition `# mount --mkdir /dev/nvme0n1p1 /mnt/boot`.
+8. Unmount the partition and mount the subvolumes `# mount --mkdir -o rw,noatime,compress-force=zstd:3,subvol=@ /dev/mapper/root /mnt/`. Similarly mount the subvolumes @home, @var, @log, and @snapshots at /mnt/home, /mnt/var, /mnt/var/log, and /mnt/snapshots respectively. Mount boot partition `# mount --mkdir /dev/nvme0n1p1 /mnt/boot`.
 
 9. Install packages on new mount point using `# pacstrap -K /mnt base base-devel arch-install-scripts intel-ucode amd-ucode linux linux-lts linux-firmware man-db man-pages smartmontools dosfstools btrfs-progs rsync openssh iwd iptables-nft wireguard-tools mesa libinput reflector git git-lfs playerctl brightnessctl pipewire pipewire-pulse wireplumber zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting xorg-server-xwayland libnotify i3blocks sway swaybg swayidle swaylock mako wlsunset jq grim slurp wf-recorder wl-clipboard cliphist kanshi xdg-desktop-portal-wlr noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono inter-font ttf-nerd-fonts-symbols ttf-font-awesome neovim foot imv mpv yt-dlp aria2 ncspot yazi bat minisign tesseract tesseract-data-eng zbar qrencode imagemagick ripgrep firefox obsidian`.
 
@@ -51,11 +51,11 @@ Where `id` is the (persistent) ID of /dev/nvme0n1p2 `# find -L /dev/disk -samefi
 ```
 /mnt/etc/fstab
 --------------
-UUID=uuid3        /            btrfs    rw,noatime,compress-force=zstd:3,nodiscard,subvol=@          0 0
-UUID=uuid3        /home        btrfs    rw,noatime,compress-force=zstd:3,nodiscard,subvol=@home      0 0
-UUID=uuid3        /var         btrfs    rw,noatime,compress-force=zstd:3,nodiscard,subvol=@var       0 0
-UUID=uuid3        /var/log     btrfs    rw,noatime,compress-force=zstd:3,nodiscard,subvol=@log       0 0
-UUID=uuid3        /snapshots   btrfs    rw,noatime,compress-force=zstd:3,nodiscard,subvol=@snapshots 0 0
+UUID=uuid3        /            btrfs    rw,noatime,compress-force=zstd:3,subvol=@          0 0
+UUID=uuid3        /home        btrfs    rw,noatime,compress-force=zstd:3,subvol=@home      0 0
+UUID=uuid3        /var         btrfs    rw,noatime,compress-force=zstd:3,subvol=@var       0 0
+UUID=uuid3        /var/log     btrfs    rw,noatime,compress-force=zstd:3,subvol=@log       0 0
+UUID=uuid3        /snapshots   btrfs    rw,noatime,compress-force=zstd:3,subvol=@snapshots 0 0
 UUID=uuid1        /boot        vfat     rw,relatime,fmask=0137,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro 0 2
 /dev/mapper/swap  none         swap     defaults                                                     0 0
 ```
@@ -139,9 +139,7 @@ options rd.luks.name=UUID=root root=/dev/mapper/root rd.luks.options=discard roo
 
 2. Enable reflector `# systemctl enable reflector.timer` and add `--save /etc/pacman.d/mirrorlist --connection-timeout 5 --download-timeout 5 --protocol https --completion-percent 100.0 --country de,fr,ch,nl,no,fi,be,at --age 2 --score 20 --sort rate` to /etc/xdg/reflector/reflector.conf.
 
-3. Enable periodic trim `# systemctl enable fstrim.timer`.
-
-4. Enable NTP by enabling systemd-timesyncd service `# systemctl enable systemd-timesyncd.service`. Add NTP servers in /etc/systemd/timesyncd.conf.
+3. Enable NTP by enabling systemd-timesyncd service `# systemctl enable systemd-timesyncd.service`. Add NTP servers in /etc/systemd/timesyncd.conf.
 
 ```
 /etc/systemd/timesyncd.conf
@@ -151,7 +149,7 @@ NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.
 FallbackNTP=0.pool.ntp.org 1.pool.ntp.org
 ```
 
-5. Add a DNS resolver by enabling systemd-resolved `# systemctl enable systemd-resolved.service`. Create a symbolic link from systemd-resolved to /etc/resolv.conf `# ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`. The symlink can be detected by systemd-networkd, and automatically set up DNS resolution for applications that use /etc/resolv.conf. For custom DNS servers, edit /etc/system/resolved.conf (not necessary unless specific DNS servers need to be used).
+4. Add a DNS resolver by enabling systemd-resolved `# systemctl enable systemd-resolved.service`. Create a symbolic link from systemd-resolved to /etc/resolv.conf `# ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`. The symlink can be detected by systemd-networkd, and automatically set up DNS resolution for applications that use /etc/resolv.conf. For custom DNS servers, edit /etc/system/resolved.conf (not necessary unless specific DNS servers need to be used).
 
 ```
 /etc/systemd/resolved.conf
@@ -161,7 +159,7 @@ DNS = 1.1.1.1
 FallbackDNS = 1.1.1.1 9.9.9.9 8.8.8.8 2606:4700:4700::1111 2620:fe::9 2001:4860:4860::8888
 ```
 
-6. Enable DHCP via systemd-networkd. Enable systemd-networkd `# systemctl enable systemd-networkd.service` and systemd-networkd-wait-online `# systemctl enable systemd-networkd-wait-online.service`. Add network configuration files in /etc/systemd/network/. Note: The configuration priority is based on file names in lexicographical order.
+5. Enable DHCP via systemd-networkd. Enable systemd-networkd `# systemctl enable systemd-networkd.service` and systemd-networkd-wait-online `# systemctl enable systemd-networkd-wait-online.service`. Add network configuration files in /etc/systemd/network/. Note: The configuration priority is based on file names in lexicographical order.
 
 ```
 /etc/systemd/network/20-simple-wired-dhcp.network
@@ -185,7 +183,7 @@ DHCP=yes
 
 Where `enp1s0` and `wlan0` are the interface names from `$ ip a`. Connect to a wireless network using `# iwctl station <interface> connect <ssid>`. To connect to known wireless networks automatically on boot, enable iwd `# systemctl enable iwd.service`.
 
-7. For VPN using WireGuard, create virtual device wg0 to tunnel (all) packets to VPN server. The example below uses assumptions about addresses and ports. Use configurations from the VPN provider.
+6. For VPN using WireGuard, create virtual device wg0 to tunnel (all) packets to VPN server. The example below uses assumptions about addresses and ports. Use configurations from the VPN provider.
 
 ```
  packets ----------> wg0 ----------------------> VPN server
@@ -255,7 +253,7 @@ Table = 1000
 
 Prevent other users from reading private keys `# chown root:systemd-network /etc/systemd/network/99-wg0.netdev` and `# chmod 0640 /etc/systemd/network/99-wg0.netdev`. Check connection `# wg`.
 
-8. Enable firewall `# systemctl enable nftables.service`. Set up a simple firewall in /etc/nftables.conf.
+7. Enable firewall `# systemctl enable nftables.service`. Set up a simple firewall in /etc/nftables.conf.
 
 ```
 /etc/nftables.conf
@@ -352,7 +350,7 @@ SyslogIdentifier = BTRFS-snapshot
 
 Enable the timers `# systemctl enable btrfs-snapshot@-.timer` `# systemctl enable btrfs-snapshot@home.timer` `# systemctl enable btrfs-snapshot@var-log.timer`. Snapshots for @var are not strictly necessary.
 
-Note: To restore a subvolume snapshot, delete the existing subvolume `# btrfs subvolume delete /@home` and restore by creating a (snapshot) subvolume from a snapshot `# btrfs subvolume snapshot /snapshots/timestamp-home /mnt/@home`. Remount the (new) subvolume to its respective directory `# mount -o rw,noatime,compress-force=zstd:3,nodiscard,subvol=@home /dev/mapper/root /home`. For restoring the root @ subvolume, preferably use a live medium instead of running from current system.
+Note: To restore a subvolume snapshot, delete the existing subvolume `# btrfs subvolume delete /@home` and restore by creating a (snapshot) subvolume from a snapshot `# btrfs subvolume snapshot /snapshots/timestamp-home /mnt/@home`. Remount the (new) subvolume to its respective directory `# mount -o rw,noatime,compress-force=zstd:3,subvol=@home /dev/mapper/root /home`. For restoring the root @ subvolume, preferably use a live medium instead of running from current system.
 
 Note: Many snapshots can cause performance issues. Periodically delete older snapshots from `# btrfs subvolume list /`.
 
