@@ -337,7 +337,7 @@ client.unfocused         #181a16 #181a16 #586048 #3b4252 #2a2d25
 client.focused           #3f4536 #3f4536 #cad8b1 #4c566a #2a2d25
 client.focused_inactive  #2a2d25 #2a2d25 #3f4536 #3b4252 #2a2d25
 client.focused_tab_title #2a2d25 #2a2d25 #cad8b1
-output * bg $HOME/Pictures/Wallpapers/muted/darkleaves.png fill
+output * bg $HOME/Pictures/Wallpapers/abstract/minibrotsgreen.png fill
 output eDP-1 scale 1.35
 
 # Options
