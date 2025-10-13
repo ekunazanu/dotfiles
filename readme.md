@@ -163,7 +163,7 @@ FallbackDNS = 1.1.1.1 9.9.9.9 8.8.8.8 2606:4700:4700::1111 2620:fe::9 2001:4860:
 
 ```
 /etc/systemd/network/20-simple-wired-dhcp.network
-----------------------------------------------------
+-------------------------------------------------
 [Match]
 Name=enp1s0
 
@@ -189,12 +189,12 @@ Where `enp1s0` and `wlan0` are the interface names from `$ ip a`. Connect to a w
  packets ----------> wg0 ----------------------> VPN server
 
  0.0.0.0/0           10.2.0.2/32                 217.1.1.1
- ::0                 fdc9:281f:04d7:9ee9::1/64   -
- -                   UDP/51819                   UDP/51820
- DNS 8.8.8.8 etc     DNS 10.2.0.1                -
+ ::/0                fdc9:281f:04d7:9ee9::1/64   -
+ -                   PORT:51819                  PORT:51820
+ DNS 8.8.8.8         DNS 10.2.0.1                -
 ```
 
-The above routes all packets (0.0.0.0/0, ::0) to wg0, which tunnels it to endpoint VPN server 217.1.1.1 (IPv6 too can be added if offered by VPN provider). VPN server is listening on port 58120. The wg0 virtual device can also receive data from VPN server on port 51819 if required. The virtual device/tunnel can be created using systemd-networkd using a configuration file.
+The above routes all packets (0.0.0.0/0, ::/0) to wg0, which tunnels it to endpoint VPN server 217.1.1.1 (IPv6 too can be added if offered by VPN provider). VPN server is listening on port 58120. The wg0 virtual device receives data from VPN server on port 51819. The virtual device/tunnel can be created using systemd-networkd using a configuration file.
 
 ```
 /etc/systemd/network/99-wg0.netdev
@@ -211,10 +211,9 @@ FirewallMark = 0x8888
 
 [WireGuardPeer]
 PublicKey = public_key
-PresharedKey = preshared_key
-AllowedIPs = 0.0.0.0/0
-AllowedIPs = ::0
+AllowedIPs = 0.0.0.0/0, ::/0
 Endpoint = 217.1.1.1:51820
+Table = 1000
 ```
 
 Route all packets via wirguard tunnel wg0.
@@ -237,18 +236,9 @@ InvertRule = true
 Table = 1000
 Priority = 10
 
-# exempt endpoint so wireguard can still connect
 [RoutingPolicyRule]
 To = 217.1.1.1/32
 Priority = 5
-
-[Route]
-Destination = 0.0.0.0/0
-Table = 1000
-
-[Route]
-Destination = ::0
-Table = 1000
 ```
 
 Prevent other users from reading private keys `# chown root:systemd-network /etc/systemd/network/99-wg0.netdev` and `# chmod 0640 /etc/systemd/network/99-wg0.netdev`. Check connection `# wg`.
