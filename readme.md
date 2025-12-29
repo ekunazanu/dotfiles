@@ -421,4 +421,9 @@ extensions.pocket.enabled -> false
 
 ## Miscellaneous
 
-Set up miscellaneous configurations as required — eg: change firefox themes, install ublock origin, tree style tabs, translate web pages etc. Edit sway input, output and swaybar profiles and i3blocks command paths as required.
+Set up miscellaneous configurations as required. For eg:
+* Change firefox defaults (blank home pages, minimal toolbars, etc).
+* Install uBlock Origin, Translate Web Pages, Stream Detector, and other plugins.
+* Edit sway input, output and swaybar profiles and i3blocks command paths as required.
+* When syncing backups of /home/ekunazanu/Pictures/ and other directories across devices, use [proper parameters](https://wiki.archlinux.org/title/Rsync#Trailing_slash_caveat) for rsync — ie. end directories with a `src/some_directory/. dst/some_directory/.`.
+* Occasionally monitor the results of `# btrfs scrub status /` and keep trimming old snapshots `# btrfs subvolume delete /snapshots/some_snapshot/`.

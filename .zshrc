@@ -61,6 +61,7 @@ alias mount="mount | column -t"
 alias du="du -h"
 alias df="df -h"
 alias cat="bat"
+alias dsync="rsync --archive --delete -hh --partial --info=stats1,progress2 --modify-window=1"
 
 preexec() { print -Pn "\e]0;${(q)1}\e\\" }
 precmd() { vcs_info }
