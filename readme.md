@@ -127,7 +127,7 @@ initrd /initramfs-linux-lts-fallback.img
 options rd.luks.name=UUID=root root=/dev/mapper/root rd.luks.options=discard rootflags=subvol=@
 ```
 
-20. Add non-root user with sudo privileges `# useradd -m -G wheel -s /bin/zsh ekunazanu`. Add wheel to sudoers `# EDITOR=nvim visudo` and uncomment `%wheel ALL=(ALL:ALL) NOPASSWD: ALL`.
+20. Add non-root user with sudo privileges `# useradd -m -G wheel -s /bin/zsh ekunazanu`. Add wheel to sudoers `# EDITOR=nvim visudo` and uncomment `%wheel ALL=(ALL:ALL) ALL`.
 
 21. Set passwords `# passwd` and `# passwd ekunazanu`.
 
@@ -385,14 +385,14 @@ SyslogIdentifier = BTRFS-scrub
 
 Where `uuid` is the UUID for /dev/mapper/root. Enable the timer `# systemctl enable btrfs-scrub.timer`.
 
-10. For [fingerprint authentication](https://wiki.archlinux.org/title/Fprint) (if the PC [supports it](https://fprint.freedesktop.org/supported-devices.html)), install `# pacman -S fprint` and add a fingerprint `# fprintd-enroll ekunazanu` and verify it `$ fprintd-verify`. To enable fingerprint authentication in swaylock, add these two lines before `auth include login`.
+10. For [fingerprint authentication](https://wiki.archlinux.org/title/Fprint) (if the PC [supports it](https://fprint.freedesktop.org/supported-devices.html)), install `# pacman -S fprint` and add a fingerprint `# fprintd-enroll ekunazanu` and verify it `$ fprintd-verify`. To enable fingerprint authentication, add this line after `-auth [success=2 default=ignore] pam_systemd_home.so`.
 
 ```
-/etc/pam.d/swaylock
-----------------------------------------------------------
-auth sufficient pam_unix.so try_first_pass likeauth nullok
-auth sufficient pam_fprintd.so
-auth include login
+/etc/pam.d/system-auth
+--------------------------------------------------------------------------------------
+-auth   [success=2 default=ignore]  pam_systemd_home.so
+auth    [success=2 default=ignore]  pam_fprintd.so      try_first_pass likeauth nullok  <- (This line)
+auth    [success=1 default=bad]     pam_unix.so         try_first_pass nullok
 ```
 
 11. Reboot `$ systemctl reboot` to ensure systemd unit changes take effect.
