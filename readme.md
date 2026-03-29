@@ -389,11 +389,13 @@ Where `uuid` is the UUID for /dev/mapper/root. Enable the timer `# systemctl ena
 
 ```
 /etc/pam.d/system-auth
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 -auth   [success=2 default=ignore]  pam_systemd_home.so
-auth    [success=2 default=ignore]  pam_fprintd.so      try_first_pass likeauth nullok  <- (This line)
+auth    [success=2 default=ignore]  pam_fprintd.so      try_first_pass likeauth nullok max-tries=7 timeout=15  <- (This line)
 auth    [success=1 default=bad]     pam_unix.so         try_first_pass nullok
 ```
+
+Increase the `deny = 10` in /etc/security/faillock.conf to be more liberal with misreads.
 
 11. Reboot `$ systemctl reboot` to ensure systemd unit changes take effect.
 
