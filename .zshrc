@@ -65,3 +65,8 @@ alias dsync="rsync --archive --delete -hh --partial --info=stats1,progress2 --mo
 
 preexec() { print -Pn "\e]0;${(q)1}\e\\" }
 precmd() { vcs_info }
+
+pastebin() {
+    local file=${1:-/dev/stdin}
+    curl -sS --data-binary @${file} https://paste.rs -o - | tee >(wl-copy)
+}
