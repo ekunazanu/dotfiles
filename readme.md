@@ -421,11 +421,12 @@ extensions.pocket.enabled -> false
 
 6. Copy files and directories from previous computer (if available) using `$ scp -r [ekunazanu@copyfromip:]/path/to/old/directory ekunazanu@copytoip:/path/to/new/directory`, where the IP address of the devices can be obtained using `$ ip a`. Ensure SSH is running `# systemctl start ssh.service` and the firewall allows connections on the SSH port.
 
+7. Take occassional backups to external drives using `# rsync --archive --delete -hh --partial --info=stats1,progress2 --modify-window=1 /home/ekunazanu/Pictures/. /mnt/Pictures/`. Use [proper paths](https://wiki.archlinux.org/title/Rsync#Trailing_slash_caveat) — ie. end directories with a slash `src/some_directory/. dst/some_directory/.`.
+
 ## Miscellaneous
 
 Set up miscellaneous configurations as required. For eg:
 * Change firefox defaults (blank home pages, minimal toolbars, etc).
 * Install uBlock Origin, Translate Web Pages, Stream Detector, and other plugins.
 * Edit sway input, output and swaybar profiles and i3blocks command paths as required.
-* When syncing backups of /home/ekunazanu/Pictures/ and other directories across devices, use [proper parameters](https://wiki.archlinux.org/title/Rsync#Trailing_slash_caveat) for rsync — ie. end directories with a `src/some_directory/. dst/some_directory/.`.
 * Occasionally monitor the results of `# btrfs scrub status /` and keep trimming old snapshots `# btrfs subvolume delete /snapshots/some_snapshot/`.
