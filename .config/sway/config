@@ -31,7 +31,7 @@ input "type:touchpad" {
     click_method clickfinger
     tap_button_map lrm
     scroll_method two_finger
-    natural_scroll disabled
+    natural_scroll enabled
     scroll_factor 1
     accel_profile adaptive
     pointer_accel 0.2
