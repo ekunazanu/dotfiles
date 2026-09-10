@@ -32,7 +32,7 @@ The following are the steps to create an encrypted-BTRFS Arch setup on an SSD. T
 
 8. Unmount the partition and mount the subvolumes `# mount --mkdir -o rw,noatime,compress-force=zstd:3,subvol=@ /dev/mapper/root /mnt/`. Similarly mount the subvolumes @home, @var, @log, and @snapshots at /mnt/home, /mnt/var, /mnt/var/log, and /mnt/snapshots respectively. Mount boot partition `# mount --mkdir /dev/nvme0n1p1 /mnt/boot`.
 
-9. Install packages on new mount point using `# pacstrap -K /mnt base base-devel arch-install-scripts intel-ucode amd-ucode linux linux-lts linux-firmware man-db man-pages smartmontools dosfstools btrfs-progs rsync openssh iwd iptables-nft wireguard-tools mesa libinput reflector git git-lfs playerctl brightnessctl pipewire pipewire-pulse wireplumber zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting xorg-server-xwayland libnotify i3blocks sway swaybg swayidle swaylock mako wlsunset jq grim slurp wf-recorder wl-clipboard cliphist kanshi xdg-desktop-portal-wlr noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono inter-font ttf-nerd-fonts-symbols ttf-font-awesome neovim foot imv mpv yt-dlp aria2 ncspot yazi bat minisign tesseract tesseract-data-eng zbar qrencode imagemagick ripgrep firefox obsidian`.
+9. Install packages on new mount point using `# pacstrap -K /mnt base base-devel arch-install-scripts intel-ucode amd-ucode linux linux-lts linux-firmware man-db man-pages smartmontools dosfstools btrfs-progs rsync rclone openssh iwd iptables-nft wireguard-tools mesa libinput reflector git git-lfs playerctl brightnessctl pipewire pipewire-pulse wireplumber zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting xorg-server-xwayland libnotify i3blocks sway swaybg swayidle swaylock mako wlsunset jq grim slurp wf-recorder wl-clipboard cliphist kanshi xdg-desktop-portal-wlr noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono inter-font ttf-nerd-fonts-symbols ttf-font-awesome neovim foot imv mpv yt-dlp aria2 ncspot yazi bat minisign tesseract tesseract-data-eng zbar qrencode imagemagick ripgrep firefox obsidian`.
 
 Install `libva-intel-driver intel-media-driver` if using an [Intel GPU](https://wiki.archlinux.org/title/Hardware_video_acceleration#Intel) for VA-API. VA-API for AMD and NVIDIA are supported via the default mesa driver. Install one of `vulkan-intel vulkan-radeon vulkan-nouveau` [depending on GPU](https://wiki.archlinux.org/title/Vulkan) if Vulkan is required. Verify VA-API later after install using [vainfo](https://wiki.archlinux.org/title/Hardware_video_acceleration#Verification) and `$ mpv --hwdec=auto`.
 
@@ -422,6 +422,8 @@ extensions.pocket.enabled -> false
 6. Copy files and directories from previous computer (if available) using `$ scp -r [ekunazanu@copyfromip:]/path/to/old/directory ekunazanu@copytoip:/path/to/new/directory`, where the IP address of the devices can be obtained using `$ ip a`. Ensure SSH is running `# systemctl start ssh.service` and the firewall allows connections on the SSH port.
 
 7. Take occassional backups to external drives using `# rsync --archive --delete -hh --partial --info=stats1,progress2 --modify-window=1 /home/ekunazanu/Pictures/. /mnt/Pictures/`. Use [proper paths](https://wiki.archlinux.org/title/Rsync#Trailing_slash_caveat) — ie. end directories with a slash `src/some_directory/. dst/some_directory/.`.
+
+8. Setup [rclone remotes](https://rclone.org/remote_setup/) and back up to cloud drives using `$ rclone sync /home/ekunazanu/Pictures/ remote:Pictures --progress --stats=10s`.
 
 ## Miscellaneous
 
