@@ -23,6 +23,7 @@
 !/.config/tofi
 !/.config/foot
 !/.config/i3blocks
+!/.config/xdg-desktop-portal-wlr
 !/.config/bat
 !/.config/nvim
 /.config/nvim/plugged
