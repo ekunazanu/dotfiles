@@ -11,6 +11,7 @@ autoload -Uz vcs_info
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(fzf --zsh --color 16)
 
 bindkey -e
 bindkey "^[[H" beginning-of-line
