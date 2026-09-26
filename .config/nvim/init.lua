@@ -1,0 +1,6 @@
+require('options')
+require('statusline')
+require('tree')
+require('keymaps')
+require('lsp')
+require('go')
