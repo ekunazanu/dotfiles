@@ -1,6 +1,6 @@
 require('options')
 require('statusline')
-require('tree')
 require('keymaps')
+require('git')
 require('lsp')
 require('go')

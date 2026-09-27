@@ -7,10 +7,11 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes:3"
 vim.opt.foldcolumn = "1"
-vim.opt.statuscolumn = " %s %C %=%{v:relnum ? v:relnum : v:lnum} "
+vim.opt.statuscolumn = " %s %{v:lua.GSSC()} %=%{v:relnum ? v:relnum : v:lnum} %C │ "
 
 -- misc
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both"
 vim.opt.fixeol = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.fillchars:append({ eob = " " })
