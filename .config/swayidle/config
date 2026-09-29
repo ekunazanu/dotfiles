@@ -1,4 +1,5 @@
 timeout 60 'makoctl mode -a away' resume 'makoctl mode -r away'
+timeout 90 'brightnessctl -s set 5%' resume 'brightnessctl -r'
 timeout 150 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 timeout 180 'swaylock'
 timeout 360 'systemctl suspend -i'
