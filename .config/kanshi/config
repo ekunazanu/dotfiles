@@ -1,0 +1,4 @@
+profile skylounge {
+    output 'eDP-1' mode "1920x1200@60.003Hz" position 640,1440 scale 1.35
+    output 'Dell Inc. DELL S2725DS 3LKMX34' mode "2560x1440@99.946Hz" position 0,0
+}
