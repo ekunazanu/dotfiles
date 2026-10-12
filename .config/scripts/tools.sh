@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-TOOLS=('calculate' 'save' 'ocr' 'matrix codes' 'color picker' 'pastebin' 'passwords' 'wifi')
+TOOLS=('ocr' 'matrix codes' 'passwords' 'totp' 'pastebin' 'wifi' 'color picker' 'calculate' 'save')
 TOOL="$(( IFS=$'\n'; echo "${TOOLS[*]}" ) | tofi | tr -d '[:blank:]' | tr '[:upper:]' '[:lower:]')"
 
 exec "$HOME/.config/scripts/tools.$TOOL.sh"
