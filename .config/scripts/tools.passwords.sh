@@ -9,7 +9,7 @@ PASSPHRASE=$(tofi </dev/null --hide-input true --hidden-character "*" --prompt-t
 PASSWORD=$(echo -n "$ACCOUNT$PLATFORM$SEED$PASSPHRASE" | sha256sum | awk '{print $1}' | xxd -r -p | base64 | cut -c -$LENGTH)
 
 if [ -n "$PASSWORD" ]; then
-    wl-copy "$PASSWORD" && notify-send -u normal -t 5000 -a "Passwords" "$PLATFORM" "Copied password connected to clipboard"
+    wl-copy "$PASSWORD" && notify-send -u normal -t 5000 -a "Passwords" "$PLATFORM" "Copied password to clipboard"
 else
-    notify-send -u normal -t 5000 -a "Passwords" "Error" "Failed to connect to get password"
+    notify-send -u normal -t 5000 -a "Passwords" "Error" "Failed to get password"
 fi
