@@ -31,6 +31,7 @@
 [alias]
     lg = log --all --topo-order --graph --show-signature --tags
     lgs = log --all --topo-order --graph --show-signature --tags --stat
+	pushall = !git remote | xargs -I R git push R
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
